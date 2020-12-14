@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 
 //! Import the User Schema
 
@@ -35,12 +35,12 @@ router.post(
     try {
       let user = await User.findOne({ email: email }); //! FindOne() is from MongoDB
 
-      //! If user is already in the DataBase
+      //! Check if user already exists
       if (user) {
         return res.status(400).json({ msg: "User already exists" });
       }
 
-      //! If user is not on the DataBase, Instantiate a new object
+      //! If user is not in the DataBase, Instantiate a new object
       user = new User({
         name,
         email,
@@ -48,12 +48,13 @@ router.post(
       });
       //! HASHING THE PASSWORD
       //! Before creating a new user, hash the password
-      const salt = await bcrypt.genSalt(10); //! Standard
+      const salt = await bcrypt.genSalt(10); //! Standard from bcrypt
 
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
 
+      //! JWT
       const payload = {
         user: {
           id: user.id,
