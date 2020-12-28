@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 import uuid from "uuid";
 import ContactContext from "./contactContext";
 import contactReducer from "./contactReducer";
+
 import {
   ADD_CONTACT,
   DELETE_CONTACT,
@@ -33,7 +34,7 @@ const ContactState = (props) => {
         type: "professional",
         id: "3",
         name: "Danny Williams",
-        email: "sara@gmail.com",
+        email: "danny@gmail.com",
         phone: "222-222-2222",
       },
     ],

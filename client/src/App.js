@@ -8,6 +8,7 @@ import ContactState from "./context/contact/ContactState";
 import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import Budget from "./components/pages/Budget";
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/about" component={About} />
+              <Route path="/about" component={About} />
+              <Route path="/budget" component={Budget} />
             </Switch>
           </div>
         </>
