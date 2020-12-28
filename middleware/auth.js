@@ -1,3 +1,4 @@
+//? THE AUTH MIDDLEWARE IS TO CHECK IF THERE IS A TOKEN IN THE HEADER
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
@@ -16,6 +17,7 @@ module.exports = function (req, res, next) {
     const decoded = jwt.verify(token, config.get("jwtSecret"));
 
     req.user = decoded.user;
+
     next();
   } catch (error) {
     res.status(401).json({ msg: "Token is not valid" });

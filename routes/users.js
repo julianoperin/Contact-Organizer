@@ -3,80 +3,72 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const { check, validationResult } = require("express-validator");
+
+//? THIS IS JUST THE REGISTER USER => "POST"
 
 //! Import the User Schema
-
 const User = require("../models/User");
 
 //! @route POST "api/users"
-//! @desc Register
+//! @description Register
 //! @access Public
-router.post(
-  "/",
-  //! Express validation for NAME, EMAIL and PASSWORD
-  [
-    check("name", "Please, name is required").not().isEmpty(),
-    check("email", "Please, use a valid email").isEmail(),
-    check(
-      "password",
-      "Please enter a password with 6 or more characters"
-    ).isLength({ min: 6 }),
-  ],
-  //! REQ - RES
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+router.post("/", async (req, res) => {
+  try {
+    let { name, email, password } = req.body;
+
+    //! Validation
+    if (!name || !email || !password)
+      return res.status(400).json({ msg: "Not all fields have been entered." });
+
+    if (password.length < 5)
+      return res
+        .status(400)
+        .json({ msg: "The password needs to be at least 5 characters long." });
+
+    //! Check if user already exists
+    let user = await User.findOne({ email: email }); //! FindOne() is from MongoDB
+
+    if (user) {
+      return res.status(400).json({ msg: "User already exists" });
     }
 
-    const { name, email, password } = req.body;
+    //! If user is not in the DataBase, create a new Instance
+    user = new User({
+      name,
+      email,
+      password,
+    });
 
-    try {
-      let user = await User.findOne({ email: email }); //! FindOne() is from MongoDB
+    //! HASHING THE PASSWORD
+    //! Before creating a new user, hash the password
+    const salt = await bcrypt.genSalt(10); //! Standard from bcrypt
 
-      //! Check if user already exists
-      if (user) {
-        return res.status(400).json({ msg: "User already exists" });
+    user.password = await bcrypt.hash(password, salt);
+
+    await user.save();
+
+    //! JWT
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    jwt.sign(
+      payload, //! User ID
+      config.get("jwtSecret"),
+      {
+        expiresIn: 36000,
+      },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
       }
-
-      //! If user is not in the DataBase, Instantiate a new object
-      user = new User({
-        name,
-        email,
-        password,
-      });
-      //! HASHING THE PASSWORD
-      //! Before creating a new user, hash the password
-      const salt = await bcrypt.genSalt(10); //! Standard from bcrypt
-
-      user.password = await bcrypt.hash(password, salt);
-
-      await user.save();
-
-      //! JWT
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
-
-      jwt.sign(
-        payload,
-        config.get("jwtSecret"),
-        {
-          expiresIn: 36000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Server Error");
-    }
+    );
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send({ msg: error.message });
   }
-);
+});
 
 module.exports = router;
