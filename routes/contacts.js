@@ -7,10 +7,12 @@ const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
 const Contact = require("../models/Contact");
 
+//? GET ALL CONTACTS
 //! @route GET api/contact
 //! @desc Get all users contacts
 //! @access Private
 router.get("/", auth, async (req, res) => {
+  //! req.user.id comes with the header token
   try {
     const contacts = await Contact.find({ user: req.user.id }).sort({
       date: -1,
@@ -22,6 +24,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+//? ADD NEW CONTACT
 //! @route POST api/contact
 //! @desc Get all users contacts
 //! @access Private
@@ -29,6 +32,7 @@ router.post(
   "/",
   [auth, [check("name", "Name is required").not().isEmpty()]],
   async (req, res) => {
+    //! validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -42,7 +46,7 @@ router.post(
         email,
         phone,
         type,
-        user: req.user.id,
+        user: req.user.id, //! comes with the auth in the header
       });
 
       const contact = await newContact.save();
@@ -55,6 +59,7 @@ router.post(
   }
 );
 
+//? UPDATE CONTACT
 //! @route PUT api/contact/:id
 //! @desc UPDATE contact
 //! @access Private
@@ -75,6 +80,7 @@ router.put("/:id", auth, async (req, res) => {
     if (!contact) return res.status(404).json({ msg: "Contact not found" });
 
     //! Make sure user owns the contact
+    //! compare the id in the contacts DB to the id that comes with the token
     if (contact.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "Not Authorized" });
     }
@@ -91,6 +97,7 @@ router.put("/:id", auth, async (req, res) => {
   }
 });
 
+//? DELETE CONTACT
 //! @route DELETE api/contact
 //! @desc Delete contact
 //! @access Private

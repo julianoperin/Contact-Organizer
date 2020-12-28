@@ -19,7 +19,6 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    minLength: 5,
   },
   date: {
     type: Date,
