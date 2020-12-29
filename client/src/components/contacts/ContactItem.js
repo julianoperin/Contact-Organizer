@@ -8,9 +8,10 @@ const ContactItem = ({ contact }) => {
 
   const { id, name, email, phone, type } = contact;
 
-  const onDelete = (id) => {
+  const onDelete = () => {
     deleteContact(id);
     clearCurrent();
+    console.log("Worked");
   };
 
   return (
@@ -46,7 +47,7 @@ const ContactItem = ({ contact }) => {
         >
           Edit
         </button>
-        <button className="btn btn-danger btn-sm" onClick={() => onDelete(id)}>
+        <button className="btn btn-danger btn-sm" onClick={onDelete}>
           Delete
         </button>
       </p>
