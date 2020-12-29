@@ -7,8 +7,6 @@ const Contact = () => {
 
   const { contacts } = contactContext;
 
-  console.log(contacts);
-
   return (
     <>
       {contacts.map((contact) => (
