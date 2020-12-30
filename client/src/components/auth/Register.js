@@ -36,6 +36,13 @@ const Register = () => {
         email,
         password,
       });
+
+      setUser({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+      });
     }
 
     console.log("Register submit");
