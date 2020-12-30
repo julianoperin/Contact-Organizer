@@ -2,8 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
+//! Contexts
 import ContactState from "./context/contact/ContactState";
 import AuthState from "./context/auth/AuthState";
+import AlertState from "./context/alert/AlertState";
 
 //! Components
 import Navbar from "./components/layout/Navbar";
@@ -18,20 +20,22 @@ const App = () => {
   return (
     <AuthState>
       <ContactState>
-        <Router>
-          <>
-            <Navbar />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/budget" component={Budget} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-              </Switch>
-            </div>
-          </>
-        </Router>
+        <AlertState>
+          <Router>
+            <>
+              <Navbar />
+              <div className="container">
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/budget" component={Budget} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
+                </Switch>
+              </div>
+            </>
+          </Router>
+        </AlertState>
       </ContactState>
     </AuthState>
   );
