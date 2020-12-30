@@ -8,7 +8,7 @@ import {
   CLEAR_FILTER,
 } from "../types";
 
-//! State is the CONTACTCONTEXT STATE
+//! State is in the CONTACTCONTEXT STATE
 //! ACTION comes with action.type & action. payload
 export default (state, action) => {
   switch (action.type) {
