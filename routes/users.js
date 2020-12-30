@@ -59,7 +59,7 @@ router.post(
       //! JWT
       const payload = {
         user: {
-          id: user.id,
+          id: user.id, //! With the token I will have the user ID
         },
       };
 

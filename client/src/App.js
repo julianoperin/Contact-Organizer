@@ -15,6 +15,7 @@ import Budget from "./components/pages/Budget";
 
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Alerts from "./components/layout/Alerts";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <>
               <Navbar />
               <div className="container">
+                <Alerts />
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route exact path="/about" component={About} />
