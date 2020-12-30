@@ -40,7 +40,7 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post("api/users", formData, config);
-
+      //! res.data is coming from the backend
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -48,7 +48,7 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: err.result.data.msg,
+        payload: err.response.data.msg, //! Standard
       });
     }
   };
@@ -65,7 +65,7 @@ const AuthState = (props) => {
 
   //! Clear Errors
   const clearErrors = () => {
-    console.log("load user");
+    dispatch({ type: CLEAR_ERRORS });
   };
 
   return (
