@@ -10,7 +10,7 @@ import {
 
 //! State is in the CONTACTCONTEXT STATE
 //! ACTION comes with action.type & action. payload
-export default (state, action) => {
+const authReducer = (state, action) => {
   switch (action.type) {
     case ADD_CONTACT:
       return {
@@ -56,3 +56,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default authReducer;
