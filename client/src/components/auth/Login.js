@@ -37,11 +37,16 @@ const Login = () => {
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
+    e.preventDefault();
+
     if (email === "" || password === "") {
       setAlert("Please fill in all fields", "danger");
     }
-    e.preventDefault();
     console.log("Login submit");
+    login({
+      email,
+      password,
+    });
   };
 
   return (
