@@ -2,7 +2,7 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #f05353;
+  --primary-color: #e31c58;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -296,6 +296,10 @@ img {
 /* Forms */
 input {
   margin: 1.2rem 0;
+}
+
+input:focus {
+  outline: none;
 }
 
 .form-text {
