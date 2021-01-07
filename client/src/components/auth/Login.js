@@ -11,6 +11,10 @@ const Login = () => {
   const { login, error, clearErrors, isAuthenticated } = authContext;
   let history = useHistory();
 
+  const signUp = () => {
+    history.push("/register");
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       history.push("/");
@@ -81,6 +85,9 @@ const Login = () => {
           value="Login"
           className="btn btn-primary btn-block"
         />
+        <button onClick={signUp} class="btn sign-up">
+          Sign Up <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </button>
       </form>
     </div>
   );

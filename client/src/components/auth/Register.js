@@ -13,6 +13,10 @@ const Register = () => {
 
   let history = useHistory();
 
+  const signIn = () => {
+    history.push("/login");
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       history.push("/");
@@ -110,6 +114,9 @@ const Register = () => {
           value="Register"
           className="btn btn-primary btn-block"
         />
+        <button onClick={signIn} class="btn sign-up">
+          Sign In <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </button>
       </form>
     </div>
   );
