@@ -1,4 +1,5 @@
 import {
+  GET_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
   SET_CURRENT,
@@ -13,10 +14,17 @@ import {
 //! ACTION comes with action.type & action. payload
 const authReducer = (state, action) => {
   switch (action.type) {
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload,
+        loading: false,
+      };
     case ADD_CONTACT:
       return {
         ...state,
         contacts: [...state.contacts, action.payload],
+        loading: false,
       };
     case UPDATE_CONTACT:
       return {
@@ -24,11 +32,13 @@ const authReducer = (state, action) => {
         contacts: state.contacts.map((item) =>
           item.id === action.payload.id ? action.payload : item
         ),
+        loading: false,
       };
     case DELETE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.filter((item) => item.id !== action.payload),
+        loading: false,
       };
     case SET_CURRENT:
       return {
