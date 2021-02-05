@@ -43,7 +43,9 @@ const Navbar = ({ icon, title }) => {
   return (
     <div className="navbar bg-primary">
       <h1>
-        <i className={icon}> {title} </i>{" "}
+        <i className={icon}>
+          <span style={{ fontFamily: "cursive" }}> {title} </span>
+        </i>{" "}
       </h1>{" "}
       <ul> {isAuthenticated ? authLinks : guestLinks} </ul>{" "}
     </div>
