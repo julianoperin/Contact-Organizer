@@ -8,6 +8,7 @@ import {
   FILTER_CONTACTS,
   CLEAR_FILTER,
   CONTACT_ERROR,
+  CLEAR_CONTACTS
 } from "../types";
 
 //! State is in the CONTACTCONTEXT STATE
@@ -18,58 +19,66 @@ const authReducer = (state, action) => {
       return {
         ...state,
         contacts: action.payload,
-        loading: false,
+          loading: false,
       };
     case ADD_CONTACT:
       return {
         ...state,
         contacts: [...state.contacts, action.payload],
-        loading: false,
+          loading: false,
       };
     case UPDATE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.map((item) =>
-          item.id === action.payload.id ? action.payload : item
-        ),
-        loading: false,
+            item.id === action.payload.id ? action.payload : item
+          ),
+          loading: false,
       };
     case DELETE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.filter((item) => item.id !== action.payload),
-        loading: false,
+          loading: false,
       };
-    case SET_CURRENT:
+    case CLEAR_CONTACTS:
       return {
         ...state,
-        current: action.payload,
-      };
-    case CLEAR_CURRENT:
-      return {
-        ...state,
-        current: null,
-      };
-    case FILTER_CONTACTS:
-      return {
-        ...state,
-        filtered: state.contacts.filter((item) => {
-          const regex = new RegExp(`${action.payload}`, "gi");
-          return item.name.match(regex) || item.email.match(regex);
-        }),
-      };
-    case CLEAR_FILTER:
-      return {
-        ...state,
-        filtered: null,
-      };
-    case CONTACT_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-      };
-    default:
-      return state;
+        contacts: null,
+          filtered: null,
+          error: null,
+          current: null
+      }
+      case SET_CURRENT:
+        return {
+          ...state,
+          current: action.payload,
+        };
+      case CLEAR_CURRENT:
+        return {
+          ...state,
+          current: null,
+        };
+      case FILTER_CONTACTS:
+        return {
+          ...state,
+          filtered: state.contacts.filter((item) => {
+            const regex = new RegExp(`${action.payload}`, "gi");
+            return item.name.match(regex) || item.email.match(regex);
+          }),
+        };
+      case CLEAR_FILTER:
+        return {
+          ...state,
+          filtered: null,
+        };
+      case CONTACT_ERROR:
+        return {
+          ...state,
+          error: action.payload,
+        };
+      default:
+        return state;
   }
 };
 
