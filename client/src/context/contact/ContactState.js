@@ -73,10 +73,10 @@ const ContactState = (props) => {
         payload: id,
       });
     } catch (err) {
-      // dispatch({
-      //   type: CONTACT_ERROR,
-      //   payload: err.response.msg,
-      // });
+      dispatch({
+        type: CONTACT_ERROR,
+        payload: err.response.msg,
+      });
     }
   };
 
