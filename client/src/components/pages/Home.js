@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Contacts from "../contacts/Contacts";
 import ContactForm from "../contacts/ContactForm";
+import Info from "../contacts/Info";
 import ContactFilter from "../contacts/ContactFilter";
 import AuthContext from "../../context/auth/authContext";
 
@@ -13,6 +14,7 @@ const Home = () => {
     <div className="grid-2">
       <div>
         <ContactForm />
+        <Info />
       </div>
       <div>
         <ContactFilter />

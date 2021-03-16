@@ -23,6 +23,8 @@ const ContactFilter = () => {
 
   return (
     <form>
+      <h2 className="summary">Contacts</h2>
+
       <input
         type="text"
         ref={text}

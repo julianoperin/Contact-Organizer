@@ -459,3 +459,24 @@ table th {
 .logo {
   font-family: "Indie Flower", cursive !important;
 }
+
+/* ! Info */
+.table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table tr td {
+  text-align: center;
+}
+
+.summary {
+  color: #e31c58;
+  margin-bottom: 0.5rem;
+}
+
+.summary-total {
+  color: #e31c58;
+  margin: 1.5rem 0 1rem 0;
+}
