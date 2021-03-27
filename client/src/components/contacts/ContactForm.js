@@ -13,7 +13,7 @@ const ContactForm = () => {
         name: "",
         email: "",
         phone: "",
-        type: "personal",
+        type: "no-Diet",
       });
     }
   }, [contactContext, current]);
@@ -22,7 +22,7 @@ const ContactForm = () => {
     name: "",
     email: "",
     phone: "",
-    type: "personal",
+    type: "no-Diet",
   });
 
   const { name, email, phone, type } = contact;
@@ -42,7 +42,7 @@ const ContactForm = () => {
       name: "",
       email: "",
       phone: "",
-      type: "personal",
+      type: "no-Diet",
     });
   };
 
@@ -76,23 +76,33 @@ const ContactForm = () => {
         value={phone}
         onChange={onChange}
       />
-      <h5>Contact Type</h5>
-      <input
-        type="radio"
-        name="type"
-        value="personal"
-        checked={type === "personal"}
-        onChange={onChange}
-      />{" "}
-      Personal{" "}
-      <input
-        type="radio"
-        name="type"
-        value="professional"
-        checked={type === "professional"}
-        onChange={onChange}
-      />{" "}
-      Professional
+      <h4>Diet Type</h4>
+      <div className="diet-type">
+        <input
+          type="radio"
+          name="type"
+          value="no-Diet"
+          checked={type === "no-Diet"}
+          onChange={onChange}
+        />{" "}
+        No-Diet{" "}
+        <input
+          type="radio"
+          name="type"
+          value="vegetarian"
+          checked={type === "vegetarian"}
+          onChange={onChange}
+        />{" "}
+        Vegetarian
+        <input
+          type="radio"
+          name="type"
+          value="vegan"
+          checked={type === "vegan"}
+          onChange={onChange}
+        />{" "}
+        Vegan
+      </div>
       <div>
         <input
           type="submit"

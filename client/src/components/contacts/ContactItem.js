@@ -20,8 +20,11 @@ const ContactItem = ({ contact }) => {
         <span
           style={{ float: "right" }}
           className={
-            "badge " +
-            (type === "professional" ? "badge-success" : "badge-primary")
+            type === "no-Diet"
+              ? "no-diet"
+              : type === "vegetarian"
+              ? "vegetarian"
+              : "vegan"
           }
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
