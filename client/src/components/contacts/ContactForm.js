@@ -87,6 +87,7 @@ const ContactForm = () => {
         />{" "}
         No-Diet{" "}
         <input
+          className="diet-input"
           type="radio"
           name="type"
           value="vegetarian"
@@ -95,6 +96,7 @@ const ContactForm = () => {
         />{" "}
         Vegetarian
         <input
+          className="diet-input"
           type="radio"
           name="type"
           value="vegan"

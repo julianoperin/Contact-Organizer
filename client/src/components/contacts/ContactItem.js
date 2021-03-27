@@ -27,6 +27,7 @@ const ContactItem = ({ contact }) => {
               : "vegan"
           }
         >
+          <i class="fas fa-utensils"></i>{" "}
           {type.charAt(0).toUpperCase() + type.slice(1)}
         </span>
       </h3>
