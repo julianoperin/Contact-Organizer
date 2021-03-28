@@ -24,7 +24,7 @@ font-family: 'Montserrat', sans-serif; */
 }
 
 .vegetarian {
-  background: #e8dbe4;
+  background: #e4b1d5;
   font-size: 0.8rem;
   padding: 0.2rem 0.7rem;
   text-align: center;
@@ -419,7 +419,7 @@ table th {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.3rem 2rem;
+  padding: 0 2rem;
   z-index: 1;
   width: 100%;
   border-bottom: solid 1px var(--primary-color);

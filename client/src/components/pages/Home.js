@@ -13,12 +13,12 @@ const Home = () => {
   return (
     <div className="grid-2">
       <div>
-        <ContactForm />
-        <Info />
-      </div>
-      <div>
         <ContactFilter />
         <Contacts />
+      </div>
+      <div>
+        <ContactForm />
+        <Info />
       </div>
     </div>
   );

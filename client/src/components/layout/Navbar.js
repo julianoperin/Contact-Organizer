@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import ContactContext from "../../context/contact/contactContext";
 
-import PropTypes from "prop-types";
+import logo from "./logo-agendaa.png";
 
-const Navbar = ({ icon, title }) => {
+const Navbar = () => {
   const authContext = useContext(AuthContext);
   const contactContext = useContext(ContactContext);
 
@@ -19,7 +19,7 @@ const Navbar = ({ icon, title }) => {
 
   const authLinks = (
     <>
-      <li> Hello {user && user.name} </li>{" "}
+      <li> Hello, {user && user.name}!</li>{" "}
       <li>
         <a onClick={onLogout} href="#">
           <i className="fas fa-sign-out-alt"> </i>{" "}
@@ -42,24 +42,12 @@ const Navbar = ({ icon, title }) => {
 
   return (
     <div className="navbar bg-primary">
-      <h1>
-        <i className={icon}>
-          <span style={{ fontFamily: "cursive" }}> {title} </span>
-        </i>{" "}
-      </h1>{" "}
+      <h6>
+        <img src={logo} alt="logo" />
+      </h6>{" "}
       <ul> {isAuthenticated ? authLinks : guestLinks} </ul>{" "}
     </div>
   );
-};
-
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-};
-
-Navbar.defaultProps = {
-  title: "Agenda",
-  icon: "fas fa-id-card-alt",
 };
 
 export default Navbar;
