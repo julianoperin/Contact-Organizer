@@ -85,6 +85,10 @@ img {
   width: 100%;
 }
 
+.img-logo {
+  width: 220px;
+}
+
 /* Utilities */
 .container {
   max-width: 1100px;
@@ -416,6 +420,7 @@ table th {
 
 /* Navbar */
 .navbar {
+  min-height: 8vh;
   display: flex;
   justify-content: space-between;
   align-items: center;

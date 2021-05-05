@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import ContactContext from "../../context/contact/contactContext";
 
-import logo from "./logo-agendaa.png";
+import logo from "./agendaalogo.svg";
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
@@ -42,9 +42,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-primary">
-      <h6>
-        <img src={logo} alt="logo" />
-      </h6>{" "}
+      <img className="img-logo" src={logo} alt="logo" />
       <ul> {isAuthenticated ? authLinks : guestLinks} </ul>{" "}
     </div>
   );

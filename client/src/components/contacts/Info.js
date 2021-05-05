@@ -32,7 +32,7 @@ const Info = () => {
               <th>No Diet</th>
               <th>Vegetarian</th>
               <th>Vegan</th>
-              <th>Total</th>
+              <th>Total Contacts</th>
             </tr>
             <tr>
               <td>{noDiet}</td>
